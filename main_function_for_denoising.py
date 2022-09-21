@@ -84,7 +84,7 @@ def alphanum_key(s):
     return [tryint(c) for c in re.split('([0-9]+)', s)]
 #######################################
 #######################################
-def MAIN (IMAGE,usethreshold,remove_noise):
+def UDM(IMAGE,usethreshold,remove_noise):
     if(usethreshold == 1):
       threshold = input("choose the value of the threshold from  1 to 254 >>>>>")
     file_path = r'/content/validd/'
@@ -161,4 +161,4 @@ def MAIN (IMAGE,usethreshold,remove_noise):
       input("removing noise may have weird effects on the output, it is advised to try without denoising before")
       im_h = cv2.fastNlMeansDenoising(im_h)
     return cv2_imshow(im_h)
-MAIN("Screenshot_10.png",0,0)
+UDM("Screenshot_10.png",0,0)
