@@ -1,6 +1,6 @@
 from tensorflow.keras.models import Model, load_model
 import numpy as np
-model = load_model('/content/drive/MyDrive/my_model_grey_noise.h5')
+model = load_model('./my_model_grey_noise_text.h5')
 from PIL import Image
 from itertools import chain
 from skimage.io import imread, imshow, imread_collection, concatenate_images
