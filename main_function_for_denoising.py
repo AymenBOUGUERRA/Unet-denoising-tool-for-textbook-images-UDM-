@@ -1,6 +1,5 @@
 from tensorflow.keras.models import Model, load_model
 import numpy as np
-model = load_model('./my_model_grey_noise_text.h5')
 from PIL import Image
 from itertools import chain
 from skimage.io import imread, imshow, imread_collection, concatenate_images
@@ -17,7 +16,18 @@ import glob
 import matplotlib.pyplot as plt
 import cv2
 #from google.colab.patches import cv2_imshow
-dir_path = '' 
+dir_path = ''
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+model = load_model(resource_path('./my_model_grey_noise_text.h5'))
 def resizeAndPad(img, size, padColor):
     h, w = img.shape[:2]
     sh, sw = size
@@ -164,8 +174,8 @@ def UDM(IMAGE,usethreshold,remove_noise):
     print('Printing image')
     return cv2.imshow("img",im_h)
 
-
-inpuut = input("please enter path and name of the input image >>>>>")
-UDM(inpuut,0,0)
-print('Image saved in relative path')
-cv2.waitKey(0)
+while True:
+    inpuut = input("please enter path and name of the input image >>>>>")
+    UDM(inpuut,0,0)
+    print('Image saved in relative path, close image window to proceed...')
+    cv2.waitKey(0)
