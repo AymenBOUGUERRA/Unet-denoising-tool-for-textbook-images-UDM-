@@ -16,7 +16,7 @@ import os
 import glob
 import matplotlib.pyplot as plt
 import cv2
-from google.colab.patches import cv2_imshow   
+#from google.colab.patches import cv2_imshow
 dir_path = '' 
 def resizeAndPad(img, size, padColor):
     h, w = img.shape[:2]
@@ -87,19 +87,19 @@ def alphanum_key(s):
 def UDM(IMAGE,usethreshold,remove_noise):
     if(usethreshold == 1):
       threshold = input("choose the value of the threshold from  1 to 254 >>>>>")
-    file_path = r'/content/validd/'
+    file_path = r'./validd/'
     if os.path.exists(file_path):
         print('file already exists')
     else:
         os.mkdir(file_path)
-    for f in os.listdir('/content/validd/'):
+    for f in os.listdir('./validd/'):
         if not f.endswith(".png"):
             continue
-        os.remove(os.path.join('/content/validd/', f))
-    diff = tile (IMAGE,"/content/","/content/validd")
+        os.remove(os.path.join('./validd/', f))
+    diff = tile (IMAGE,".","./validd")
     #print (diff)
     #######################################
-    VALID_PATH = "/content/validd/"
+    VALID_PATH = "./validd/"
     valid_ids = sorted(os.listdir(VALID_PATH), key=alphanum_key)
     print(valid_ids)
     X_valid = np.zeros((len(valid_ids), 128, 128), dtype=np.uint8)
@@ -127,17 +127,17 @@ def UDM(IMAGE,usethreshold,remove_noise):
                                           (sizes_valid[i][0], sizes_valid[i][1]), 
                                           mode='constant', preserve_range=True))
     #######################################
-    from google.colab.patches import cv2_imshow
-    file_pathh = r'/content/final_order/'
+
+    file_pathh = r'./final_order/'
     if os.path.exists(file_pathh):
         print('file already exists')
     else:
         os.mkdir(file_pathh)
-    for f in os.listdir('/content/final_order/'):
+    for f in os.listdir('./final_order/'):
         if not f.endswith(".png"):
             continue
-        os.remove(os.path.join('/content/final_order/', f))
-    file_path = r'/content/final_order/'
+        os.remove(os.path.join('./final_order/', f))
+    file_path = r'./final_order/'
     if os.path.exists(file_path):
         print('file already exists')
     else:
@@ -151,14 +151,21 @@ def UDM(IMAGE,usethreshold,remove_noise):
         opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_GRAY2BGR)
         #opencvImage = cv2.fastNlMeansDenoising(opencvImage, None, 27, 27, 17)
         #opencvImage = opencvImage[0:IMG_HEIGHT, 0+int(diff/2):IMG_WIDTH-int(diff/2)]
-        cv2.imwrite("/content/final_order/"+str(x)+".png",opencvImage)
+        cv2.imwrite("./final_order/"+str(x)+".png",opencvImage)
         #cv2_imshow(img)
         #plt.show()
     #################################
-    images = [cv2.imread(file) for file in sorted(glob.glob("/content/final_order/*.png"), key=alphanum_key)]
+    images = [cv2.imread(file) for file in sorted(glob.glob("./final_order/*.png"), key=alphanum_key)]
     im_h = cv2.hconcat(images)
     if (remove_noise == 1):
       input("removing noise may have weird effects on the output, it is advised to try without denoising before")
       im_h = cv2.fastNlMeansDenoising(im_h)
-    return cv2_imshow(im_h)
-UDM("Screenshot_10.png",0,0)
+    cv2.imwrite("./out.png", im_h)
+    print('Printing image')
+    return cv2.imshow("img",im_h)
+
+
+inpuut = input("please enter path and name of the input image >>>>>")
+UDM(inpuut,0,0)
+print('Image saved in relative path')
+cv2.waitKey(0)
