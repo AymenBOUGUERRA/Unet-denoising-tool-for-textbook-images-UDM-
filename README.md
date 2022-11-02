@@ -53,6 +53,28 @@ Other real world application :
 
 
 
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+How to use ?
+I have compiled the code into one .exe (900Mo)
+
+![image](https://user-images.githubusercontent.com/97101162/199512480-790e9aa5-3f86-446d-9bd2-6795537c8893.png)
+
+execute the file and wait for its initialization (2 minutes depending or your hardware) (make sure to have
+at least 2 Go free disk space for it to load as temporary file)
+
+![image](https://user-images.githubusercontent.com/97101162/199513299-fa451721-78e4-4ebc-8064-86b67a422c74.png)
+
+insert the full path of the image file (with the name with extenction .png or jpg)
+
+![image](https://user-images.githubusercontent.com/97101162/199514204-0d4e1a0f-6f04-4538-8da1-9ab95c172515.png)
+
+the output image will also be saved in the main dir as "out.png"
+
+![image](https://user-images.githubusercontent.com/97101162/199514563-463547a0-5c28-4fed-9ec0-ade2b8cd12a1.png)
+
 
 
 
