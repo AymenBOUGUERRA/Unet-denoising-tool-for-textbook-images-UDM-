@@ -3,7 +3,7 @@ This tool (named UDM) will use a pre-trained Unet model to remove grids, grey ba
 the dataset used is a png converted verion of the CROHME competitions (summ of all) + IAM dataset that both have been modified by adding random noise, random backrounds and random grids.
 
 
-Download link for the saved model (137mo) ==> https://drive.google.com/file/d/1wH6Ioqkk6zXxVgOFbCcYYVeatReZOVEs/view?usp=sharing
+
 
 
 
