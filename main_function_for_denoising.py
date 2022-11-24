@@ -120,7 +120,7 @@ def UDM(IMAGE,usethreshold,remove_noise):
         path = VALID_PATH + id_
         img = cv2.imread(dir_path + path, cv2.IMREAD_GRAYSCALE)[:,:]
         img = resizeAndPad(img, (540, 540), 255)
-        #imshow(img)
+   
         if(usethreshold == 1):
           (thresh, img) = cv2.threshold(img, int(threshold), 255, cv2.THRESH_BINARY)   
           print("thresholding may have weird effects on the output, it is advised to try the the image as grayscale before")
@@ -153,17 +153,12 @@ def UDM(IMAGE,usethreshold,remove_noise):
     else:
         os.mkdir(file_path)
     for x in range(len(preds_valid_t)):
-        #imshow(X_valid[x])
-        #print(x)
-        #plt.show()
+       
         img = np.squeeze(preds_valid_t[x])
         img = img*255   
         opencvImage = cv2.cvtColor(np.array(img), cv2.COLOR_GRAY2BGR)
-        #opencvImage = cv2.fastNlMeansDenoising(opencvImage, None, 27, 27, 17)
-        #opencvImage = opencvImage[0:IMG_HEIGHT, 0+int(diff/2):IMG_WIDTH-int(diff/2)]
         cv2.imwrite("./final_order/"+str(x)+".png",opencvImage)
-        #cv2_imshow(img)
-        #plt.show()
+       
     #################################
     images = [cv2.imread(file) for file in sorted(glob.glob("./final_order/*.png"), key=alphanum_key)]
     im_h = cv2.hconcat(images)
